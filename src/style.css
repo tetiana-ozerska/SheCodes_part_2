@@ -1,0 +1,96 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: #dde0ab;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: #2c2d34;
+}
+img {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+}
+input {
+  border: 1px solid #a6a87d;
+  box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+}
+button {
+  border-radius: 25px;
+  border: 1px solid #a6a87d;
+  background: #a6a87d;
+  color: #2c2d34;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto;
+  line-height: 22px;
+  padding: 8px 18px;
+  text-decoration: none;
+  transition: all 200ms ease;
+  box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0 15px 0;
+  margin-top: 20px;
+  background: #a6a87d;
+}
+button:hover {
+  cursor: pointer;
+  background: #346473;
+  border: 1px solid #346473;
+}
+
+h4.card-title,
+h6.card-title {
+  text-align: center;
+}
+i.fa-temperature-low,
+i.fa-cloud-rain,
+i.fa-snowflake {
+  color: #668ba4;
+}
+
+i.fa-sun {
+  color: #f5ee50;
+}
+i.fa-cat {
+  color: #346473;
+}
+
+.container {
+  margin-top: 30px;
+}
+.main_card {
+  font-size: 18px;
+}
+.card {
+  background: #feffdf;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.mb-3 {
+  box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+}
+.my_name {
+  text-decoration: none;
+  color: #2c2d34;
+  font-weight: bold;
+}
+
+#current-location-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather cast</title>
+    <!--bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Rubik+Bubbles&display=swap"
+      rel="stylesheet"
+    />
+    <!--fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/d32234cdce.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--axion-->
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <!--css-->
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <!-- city and current weather -->
+        <div class="col-lg-8">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="images/cat_sun.jpg"
+                  class="img-fluid rounded-start"
+                  alt="cat_sun"
+                />
+              </div>
+              <div class="col">
+                <div class="card-body">
+                  <h1 class="card-title">
+                    Amsterdam
+                    <i class="fa-solid fa-sun"></i>
+                  </h1>
+                  <h4 id="current-data-main-card">January, 14 2023 22:49</h4>
+                  <ul class="card-text main_card">
+                    <li>
+                      <span id="current-temperature">0</span>°C,
+                      <span id="current-wind-speed">0</span> km/h
+                    </li>
+                    <li>
+                      <span id="current-condition">no rain</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--search engine-->
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-8">
+              <label for="search" class="form-label">
+                Search weather for your city
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-9 search">
+              <input
+                type="search"
+                class="form-control"
+                id="search-field"
+                placeholder="enter your city"
+              />
+            </div>
+
+            <div class="col-1">
+              <button type="button" id="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button type="button" id="current-location-button">
+                find out the weather for your current location
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- days of the week -->
+      <div class="card-group">
+        <!-- Monday -->
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              Monday
+              <i class="fa-solid fa-temperature-low"></i>
+            </h4>
+            <h6 class="card-title">January, 16 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> -3°C</li>
+              <li><b>Night</b> -10°C</li>
+              <li><b>Wind</b> 4 km/h</li>
+              <li><b>Precipitation</b> no</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_cold.jpg"
+            class="card-img-bottom"
+            alt="cat_cold"
+          />
+        </div>
+        <!-- Tuesday -->
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              Tuesday
+              <i class="fa-solid fa-cloud-rain"></i>
+            </h4>
+            <h6 class="card-title">January, 17 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> 0°C</li>
+              <li><b>Night</b> -1°C</li>
+              <li><b>Wind</b> 10 km/h</li>
+              <li><b>Precipitation</b> rain</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_rain.jpg"
+            class="card-img-bottom"
+            alt="cat_rain"
+          />
+        </div>
+        <!-- Wednesday -->
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              Wednesday
+              <i class="fa-regular fa-snowflake"></i>
+            </h4>
+            <h6 class="card-title">January, 18 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> +5°C</li>
+              <li><b>Night</b> 0°C</li>
+              <li><b>Wind</b> 16 km/h</li>
+              <li><b>Precipitation</b> snow</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_snow_2.jpg"
+            class="card-img-bottom"
+            alt="cat_snow_2"
+          />
+        </div>
+        <!-- Thursday -->
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              Thursday
+              <i class="fa-regular fa-snowflake"></i>
+            </h4>
+            <h6 class="card-title">January, 19 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> +7°C</li>
+              <li><b>Night</b> +2°C</li>
+              <li><b>Wind</b> 2 km/h</li>
+              <li><b>Precipitation</b> snow</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_snow_2.jpg"
+            class="card-img-bottom"
+            alt="cat_snow_2"
+          />
+        </div>
+        <!-- Friday -->
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              Friday
+              <i class="fa-solid fa-sun"></i>
+            </h4>
+            <h6 class="card-title">January, 20 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> +2°C</li>
+              <li><b>Night</b> -4°C</li>
+              <li><b>Wind</b> 3 km/h</li>
+              <li><b>Precipitation</b> no</li>
+            </ul>
+          </div>
+          <img src="images/cat_sun.jpg" class="card-img-bottom" alt="cat_sun" />
+        </div>
+      </div>
+    </div>
+    <!--footer-->
+    <footer>
+      This website was coded by
+      <a href="https://www.instagram.com/tanya_ozerskaya/" class="my_name"
+        >Tanya Ozerska</a
+      >
+      <br />
+      <i class="fa-solid fa-cat"></i>
+      Weather Cat Cast © 2023
+    </footer>
+    <script src="src/app.js"></script>
+  </body>
+</html>
