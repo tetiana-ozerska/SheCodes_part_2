@@ -51,7 +51,7 @@ function getSearchCityWeather(response) {
 
   let curretnIcon = document.querySelector("#icon");
   let icon = response.data.weather[0].icon;
-  curretnIcon.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+  curretnIcon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
   curretnIcon.setAttribute("alt", condition)
 }
 
