@@ -89,6 +89,12 @@ i.fa-cat {
   font-weight: bold;
 }
 
+#icon{
+    margin-right: 5px;
+    height: 64px;
+    width: 64px;
+}
+
 #current-location-button {
   margin-top: 20px;
   margin-bottom: 20px;

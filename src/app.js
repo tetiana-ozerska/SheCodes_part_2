@@ -47,6 +47,11 @@ function getSearchCityWeather(response) {
   let currentCondition = document.querySelector("#current-condition");
   let condition = response.data.weather[0].description;
   currentCondition.innerHTML = condition;
+
+  let curretnIcon = document.querySelector("#icon");
+  let icon = response.data.weather[0].icon;
+  curretnIcon.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+  curretnIcon.setAttribute("alt", condition)
 }
 
 function displaySearchCityWeather(event) {
