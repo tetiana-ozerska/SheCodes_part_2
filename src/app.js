@@ -60,8 +60,8 @@ function displaySearchCityWeather(event) {
   axios.get(path).then(getSearchCityWeather);
 }
 
-let searchButton = document.querySelector("#search-button");
-searchButton.addEventListener("click", displaySearchCityWeather);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", displaySearchCityWeather);
 
 //current location button
 function retrievePosition(position) {
