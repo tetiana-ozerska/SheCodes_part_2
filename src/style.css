@@ -53,6 +53,7 @@ h4.card-title,
 h6.card-title {
   text-align: center;
 }
+
 i.fa-temperature-low,
 i.fa-cloud-rain,
 i.fa-snowflake {
@@ -72,6 +73,7 @@ i.fa-cat {
 .main_card {
   font-size: 18px;
 }
+
 .card {
   background: #feffdf;
 }
@@ -89,6 +91,10 @@ i.fa-cat {
   font-weight: bold;
 }
 
+#celsius, #fahrenheit {
+  text-decoration: none;
+}
+
 #icon{
     margin-right: 5px;
     height: 64px;
@@ -99,4 +105,13 @@ i.fa-cat {
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
+}
+
+.active{
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.active:hover{
+  text-decoration: none;
 }
