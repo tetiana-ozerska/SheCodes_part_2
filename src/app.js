@@ -66,6 +66,40 @@ function displaySearchCityWeather(event) {
   axios.get(path).then(getSearchCityWeather);
 }
 
+function displayForecast(){
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="card-group">`;
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  days.forEach(function(day){
+    forecastHTML = forecastHTML + `
+    <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              ${day}
+              <i class="fa-solid fa-temperature-low"></i>
+            </h4>
+            <h6 class="card-title">January, 16 2023</h6>
+            <ul class="card-text">
+              <li><b>Day</b> -3°C</li>
+              <li><b>Night</b> -10°C</li>
+              <li><b>Wind</b> 4 km/h</li>
+              <li><b>Precipitation</b> no</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_cold.jpg"
+            class="card-img-bottom"
+            alt="cat_cold"
+          />
+        </div>
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", displaySearchCityWeather);
 
@@ -108,6 +142,8 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+displayForecast();
 
 
 //cel to fah, fah to cel
