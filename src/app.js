@@ -27,9 +27,71 @@ function formatDate(currentDay) {
 let currentDateOnPage = document.querySelector("#current-data-main-card");
 currentDateOnPage.innerHTML = formatDate(new Date());
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
+function displayForecast(response){
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="card-group">`;
+  forecast.forEach(function(forecastDay, index){
+    if (index < 5) {
+    forecastHTML = forecastHTML + `
+        <div class="card days">
+          <div class="card-body">
+            <h4 class="card-title">
+              ${formatDay(forecastDay.dt)}
+            </h4>
+            <img
+            src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png"
+            alt=""
+            width="42"
+          />
+            <ul class="card-text">
+              <li><b>Max </b>${Math.round(forecastDay.temp.max)}°C</li>
+              <li><b>Min </b>${Math.round(forecastDay.temp.min)}°C</li>
+              <li><b>Wind </b>${Math.round(forecastDay.wind_speed)} km/h</li>
+            </ul>
+          </div>
+          <img
+            src="images/cat_cold.jpg"
+            class="card-img-bottom"
+            alt="cat_cold"
+          />
+        </div>
+    `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //weather for main card via search engine
 let apiKey = "2718952144ed077c12e7c160fb6fc351";
 let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function getSearchCityWeather(response) {
   let currentCity = document.querySelector("h1.card-title");
@@ -53,6 +115,8 @@ function getSearchCityWeather(response) {
   let icon = response.data.weather[0].icon;
   curretnIcon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
   curretnIcon.setAttribute("alt", condition)
+
+  getForecast(response.data.coord);
 }
 
 function displaySearchCityWeather(event) {
@@ -66,38 +130,9 @@ function displaySearchCityWeather(event) {
   axios.get(path).then(getSearchCityWeather);
 }
 
-function displayForecast(){
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="card-group">`;
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  days.forEach(function(day){
-    forecastHTML = forecastHTML + `
-    <div class="card days">
-          <div class="card-body">
-            <h4 class="card-title">
-              ${day}
-              <i class="fa-solid fa-temperature-low"></i>
-            </h4>
-            <h6 class="card-title">January, 16 2023</h6>
-            <ul class="card-text">
-              <li><b>Day</b> -3°C</li>
-              <li><b>Night</b> -10°C</li>
-              <li><b>Wind</b> 4 km/h</li>
-              <li><b>Precipitation</b> no</li>
-            </ul>
-          </div>
-          <img
-            src="images/cat_cold.jpg"
-            class="card-img-bottom"
-            alt="cat_cold"
-          />
-        </div>
-    `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
+function searchCity(city) {
+  let path = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(path).then(getSearchCityWeather);
 }
 
 let form = document.querySelector("#search-form");
@@ -143,7 +178,7 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-displayForecast();
+searchCity("Kyiv");
 
 
 //cel to fah, fah to cel
